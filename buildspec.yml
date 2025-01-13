@@ -15,7 +15,7 @@ phases:
         - npm install -g @angular/cli
   build:
     commands:
-        - - export NODE_OPTIONS="--max-old-space-size=4096"
+        - export NODE_OPTIONS="--max-old-space-size=4096"
         - echo Build started 
         - ng build
 artifacts:
