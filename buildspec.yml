@@ -8,7 +8,7 @@ env:
 phases:
   install:
     runtime-versions:
-        nodejs: 22
+        nodejs: 18
     commands:
         - echo Installing source NPM dependencies...
         - npm install
@@ -23,3 +23,4 @@ artifacts:
         - '**/*'
     base-directory: 'dist*'
     discard-paths: no
+    base-directory: ${BUILD_FOLDER}
