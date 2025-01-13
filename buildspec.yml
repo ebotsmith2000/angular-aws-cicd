@@ -12,13 +12,14 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
+        - node -v
         - npm install -g @angular/cli
   build:
     commands:
         - echo Build started 
-        - ng build
+        - ng build --configuration production
 artifacts:
     files:
         - '**/*'
     base-directory: 'dist*'
-    discard-paths: yes
+    discard-paths: no
