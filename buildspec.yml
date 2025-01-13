@@ -12,7 +12,6 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
-        - npm install react-scripts@latest
         - node -v
         - npm install -g @angular/cli
   build:
