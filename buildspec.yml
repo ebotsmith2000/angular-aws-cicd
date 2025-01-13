@@ -1,35 +1,24 @@
 version: 0.2
 
 env:
-  exported-variables:
-    - S3_BUCKET
-  variables:
-    CACHE_CONTROL: "86400"
-    BUILD_FOLDER: "dist"
-
+    variables:
+        CACHE_CONTROL: "86400"
+        S3_BUCKET: "{{s3_bucket_url}}"
+        BUILD_FOLDER: "dist"
 phases:
   install:
     runtime-versions:
-      nodejs: 18
+        nodejs: 14
     commands:
-      - node -v
-      - npm install -g @angular/cli@16.1.2
-  pre_build:
-    commands:
-      - npm install
-      - echo "{\"hash\":\"$CODEBUILD_RESOLVED_SOURCE_VERSION\"}" > src/assets/commit-hash.json
+        - echo Installing source NPM dependencies...
+        - npm install
+        - npm install -g @angular/cli
   build:
     commands:
-      - echo Building...
-      - ng build --configuration production
-      # - echo "User-agent\: \*\nDisallow: \/" > src/assets/commit-hash.json
-  post_build:
-    commands:
-      - aws s3 sync ${BUILD_FOLDER} s3://${S3_BUCKET} --delete
-      - echo S3 bucket is cleared.
-
+        - echo Build started 
+        - ng build
 artifacts:
-  files:
-    - "**/*"
-  discard-path: no
-  base-directory: ${BUILD_FOLDER}
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes
