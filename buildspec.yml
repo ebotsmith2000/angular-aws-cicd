@@ -12,6 +12,7 @@ phases:
     commands:
         - echo Installing source NPM dependencies...
         - npm install
+        - sudo apt-get upgrade openssl
         - npm install -g @angular/cli
   build:
     commands:
