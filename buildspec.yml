@@ -1,25 +1,29 @@
 version: 0.2 
-phases: 
-  install:
-    runtime-versions:
-      nodejs: 20
-    commands:
-      - echo Installing NPM dependencies 
-      - npm install
-  pre_build: 
-    commands: 
-      - echo Installing NPM dependencies 
-      - npm install 
 
-  build: 
-    commands: 
-      - echo Build started on date 
-      - npm run build 
-  post_build: 
-    commands: 
-      # copy the contents of /build to S3 - aws s3 cp --recursive ./build s3://******/
-      - aws s3 sync ./dist/angular-aws-cicd s3://angular-app-cpp777 --delete      
-artifacts: 
-  files: 
-    - '**/*' 
-  base-directory: build
+env:
+   variables:
+       CACHE_CONTROL: '86400'
+       S3_BUCKET: "{{s3_bucket-url}}"
+       BUILD_FOLDER: 'dist'
+
+
+phases:
+ install:
+   runtime-versions:
+       nodejs: 14
+   commands:
+       - echo Installing source NPM dependencies...
+	   - npm cache clean --force
+       - npm install -g @angular/cli@latest
+	   - npm install
+       - npm add @angular/material
+ build:
+   commands:
+       - echo Build started
+       - ng build
+ 
+artifacts:
+   files:
+       - '**/*'
+   base-directory: './dist'
+   discard-paths: yes
