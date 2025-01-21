@@ -13,11 +13,12 @@ phases:
        nodejs: 18
    commands:
        - echo Installing source NPM dependencies...
+       - npm config set legacy-peer-deps true
        - npm cache clean --force
        - npm install -g @angular/cli@latest
        - npm install
        - ng add @angular/material
-       - npm config set legacy-peer-deps true
+       
  build:
    commands:
        - echo Build started
