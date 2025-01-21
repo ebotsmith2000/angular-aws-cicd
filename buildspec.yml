@@ -4,7 +4,7 @@ env:
    variables:
        CACHE_CONTROL: '86400'
        S3_BUCKET: "{{s3_bucket-url}}"
-       BUILD_FOLDER: 'dist'
+       BUILD_FOLDER: "dist"
 
 
 phases:
@@ -13,9 +13,9 @@ phases:
        nodejs: 14
    commands:
        - echo Installing source NPM dependencies...
-	     - npm cache clean --force
+	   - npm cache clean --force
        - npm install -g @angular/cli@latest
-	     - npm install
+	   - npm install
        - npm add @angular/material
  build:
    commands:
