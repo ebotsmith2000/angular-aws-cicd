@@ -18,7 +18,7 @@ phases:
   post_build: 
     commands: 
       # copy the contents of /build to S3 - aws s3 cp --recursive ./build s3://******/
-      - aws s3 sync ./dist/YOUR_ANGULAR_APP_NAME s3://YOUR_S3_BUCKET_NAME --delete      
+      - aws s3 sync ./dist/YOUR_ANGULAR_APP_NAME s3://angular-app-cpp777 --delete      
 artifacts: 
   files: 
     - '**/*' 
