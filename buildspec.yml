@@ -10,7 +10,7 @@ phases:
     commands: 
       - echo Installing NPM dependencies 
       - npm install 
-      - nodejs install
+
   build: 
     commands: 
       - echo Build started on date 
