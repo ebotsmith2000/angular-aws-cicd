@@ -16,7 +16,7 @@ phases:
        - npm cache clean --force
        - npm install -g @angular/cli@latest
        - npm install
-       - npm add @angular/material
+       - ng add @angular/material
  build:
    commands:
        - echo Build started
